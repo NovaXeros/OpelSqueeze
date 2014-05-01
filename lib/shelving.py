@@ -9,7 +9,7 @@ import smartshuffle as shf
 def prime():
 		s = shelve.open('check.db')
 		try:
-			s['key1'] = { 'last_checked_song': 'None', 'last_checked_time': 0 }
+			s['key1'] = { 'last_checked_song': 'PRIMED', 'last_checked_time': 0 }
 		finally:
 			s.close()
 			print "Priming a new database."

@@ -7,9 +7,9 @@ import time
 
 def passthru(command):
 	
-	host = 'http://192.168.1.132:9000'
+	host = 'http://192.168.1.1:9000'
 	tgt_rescan = ''
-	tgt = '00:00:00:00:00:22'
+	tgt = 'b8:27:eb:c8:56:60'
 	
 	if not (command == ['rescan']):
 		return transmit(host, command, tgt)

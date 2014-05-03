@@ -11,5 +11,7 @@
 # during the downtime.
 
 from lib import smartshuffle
+import time
 
+time.sleep(50)
 smartshuffle.first_check()

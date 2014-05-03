@@ -20,17 +20,14 @@ def perform_start_tasks():
 	time_without = time.time() - int(last_known_check)
 	
 	if last_known_song == 'PRIMED':
-		time.sleep(45)
 		send.passthru(['randomplay','tracks'])
 	else:
 		if (time_without < 600):
-			time.sleep(45)
 			send.passthru(['playlist','play',last_known_song])
 			time.sleep(1)
 			send.passthru(['playlist','add','randomplay://track'])
 			db.update_shelf()
 		else:
-			time.sleep(45)
 			send.passthru(['rescan'])
 			time.sleep(2)
 			send.passthru(['randomplay','tracks'])

@@ -9,7 +9,7 @@ import smartshuffle as shf
 def prime():
 	s = shelve.open('check.db')
 	try:
-		s['key1'] = { 'last_checked_song': 'PRIMED', 'last_checked_time': 0 }
+		s['key1'] = { 'last_checked_song': 'PRIMED', 'last_checked_time': 0, 'last_known_prog': 0 }
 	finally:
 		s.close()
 		print "Priming a new database."
@@ -19,13 +19,12 @@ def update_shelf():
 	while True:
 		s = shelve.open('check.db', writeback=True)
 		current_song = send.passthru(['path','?'])
+		current_prog = send.passthru(['time','?'])
 		current_time = time.time()
-		
-		last_song_loc = s['key1']['last_checked_song']
-		last_check_time = s['key1']['last_checked_time']
 		
 		s['key1']['last_checked_time'] = current_time
 		s['key1']['last_checked_song'] = current_song
+		s['key1']['last_checked_prog'] = current_prog
 		
 		s.close()
 
@@ -37,5 +36,9 @@ def query(request):
 		return answer
 	if request == 'time':
 		answer = s['key1']['last_checked_time']
+		s.close()
+		return answer
+	if request == 'prog':
+		answer = s['key1']['last_checked_prog']
 		s.close()
 		return answer

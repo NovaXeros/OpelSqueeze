@@ -22,23 +22,23 @@ def update_shelf():
 		current_prog = send.passthru(['time','?'])
 		current_time = time.time()
 		
-		s['key1']['last_checked_time'] = current_time
-		s['key1']['last_checked_song'] = current_song
-		s['key1']['last_checked_prog'] = current_prog
+		s['last_checked_time'] = current_time
+		s['last_checked_song'] = current_song
+		s['last_checked_prog'] = current_prog
 		
 		s.close()
 
 def query(request):
 	s = shelve.open('check.db')
 	if request == 'song':
-		answer = s['key1']['last_checked_song']
+		answer = s['last_checked_song']
 		s.close()
 		return answer
 	if request == 'time':
-		answer = s['key1']['last_checked_time']
+		answer = s['last_checked_time']
 		s.close()
 		return answer
 	if request == 'prog':
-		answer = s['key1']['last_checked_prog']
+		answer = s['last_checked_prog']
 		s.close()
 		return answer

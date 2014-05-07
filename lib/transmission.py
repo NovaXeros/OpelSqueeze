@@ -5,9 +5,16 @@ import urllib
 import urllib2
 import time
 
+host = 'http://192.168.1.1:9000'
+
+def rp_add():
+	randomplay_host = host+'/plugins/RandomPlay/mix.html'
+	params = {'type': 'track', 'addOnly': 1, 'player': 'PiCarSquared'}
+	data = urllib.urlencode(params)
+	u = urllib2.urlopen(randomplay_host, data)
+
 def passthru(command):
 	
-	host = 'http://192.168.1.1:9000'
 	tgt_rescan = ''
 	tgt = 'b8:27:eb:c8:56:60'
 	

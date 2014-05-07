@@ -26,8 +26,8 @@ def perform_start_tasks():
 		if (time_without < 600):
 			send.passthru(['playlist','add',last_known_song])
 			send.passthru(['play','5'])
-			send.passthru(['time',last_know_prog])
-			send.passthru(['playlist','add','randomplay://track'])
+			send.passthru(['time',last_known_prog])
+			send.rp_add()
 			db.update_shelf()
 		else:
 			send.passthru(['rescan'])

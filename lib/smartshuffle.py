@@ -6,8 +6,8 @@ import transmission as send
 import shelving as db
 
 def first_check():
-	if os.path.isfile('check.db') == False:
-		db.prime()
+	if os.path.isfile(db.checkfile) == False:
+		db.check_for_dir()
 	else:
 		if send.passthru(['mode','?']) == 'play':
 			db.update_shelf()
@@ -22,6 +22,7 @@ def perform_start_tasks():
 	
 	if last_known_song == 'PRIMED':
 		send.passthru(['randomplay','tracks'])
+		db.update_shelf()
 	else:
 		if (time_without < 600):
 			send.passthru(['playlist','add',last_known_song])

@@ -32,7 +32,7 @@ def prime():
 	try:
 		s['last_checked_song'] = 'PRIMED'
 		s['last_checked_time'] = 0
-		s['last_known_prog'] = 0 
+		s['last_checked_prog'] = 0 
 	finally:
 		s.close()
 		print "Priming a new database."
